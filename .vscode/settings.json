@@ -1,0 +1,5 @@
+{
+    "editor.wordWrap": "on",
+    "totvsLanguageServer.welcomePage": false,
+    "python.formatting.provider": "black"
+}

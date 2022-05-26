@@ -1,0 +1,37 @@
+version: "3"
+services:
+  web:
+    image: yiisoftware/yii2-php:7.4-apache
+    depends_on:
+      - mysql
+    networks:
+      - yii
+    ports:
+      - 80:80
+      - 81:81
+    restart: always
+    volumes:
+      - F:\User\Document\学校杂物\课设\advanced\:/app
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+    links:
+      - mysql:mysql
+  mysql:
+    environment:
+      - MYSQL_USER=yii2
+      - MYSQL_PASSWORD=toor
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=yii2
+    image: mysql:8.0-debian
+    networks:
+      - yii
+    ports:
+      - 53306:3306
+    restart: always
+    volumes:
+      - ./db_data/mysql:/var/lib/mysql
+volumes:
+  yii2db:
+
+networks:
+  yii:
+    external: true
